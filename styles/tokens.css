@@ -1,0 +1,33 @@
+/*
+ * Design tokens — transcribed from design/design-system.md.
+ * That file is the source of truth; update both together if a token changes.
+ * Font custom properties (--font-display / --font-body / --font-mono) are
+ * set by app/layout.tsx via next/font/google, not declared here.
+ */
+
+:root {
+  /* Color */
+  --ink: #042a2b;
+  --ink-soft: #0a3a3b;
+  --paper: #cdedf6;
+  --paper-line: #a9d3de;
+  --paper-line-strong: #7fb8c8;
+  --text-on-paper: #042a2b;
+  --text-on-paper-muted: #3e6b70;
+  --text-on-ink: #e6f5f8;
+  --text-on-ink-muted: #7fafb5;
+  --rust: #ef7b45;
+  --rust-deep: #d84727;
+  --pine: #5eb1bf;
+  --pine-deep: #2e7885;
+  --card-surface: #f2fafc;
+  --stepper-bg: #ffffff;
+
+  /* Layout */
+  --content-max-width: 1040px;
+  --content-padding: 48px;
+  --content-padding-mobile: 22px;
+  --breakpoint-mobile: 720px;
+  --radius: 3px;
+  --radius-lg: 4px;
+}

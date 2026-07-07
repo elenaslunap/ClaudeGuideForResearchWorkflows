@@ -1,0 +1,70 @@
+.card {
+  background: var(--card-surface);
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  position: relative;
+  padding: 22px 20px 20px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--paper-line-strong);
+  transform: translateY(-2px);
+}
+
+.tab {
+  position: absolute;
+  top: -1px;
+  left: 20px;
+  width: 46px;
+  height: 6px;
+  border-radius: 0 0 2px 2px;
+}
+
+.tabRust {
+  background: var(--rust);
+}
+
+.tabPine {
+  background: var(--pine);
+}
+
+.tabRustDeep {
+  background: var(--rust-deep);
+}
+
+.callNumber {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-on-paper-muted);
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-on-paper-muted);
+  margin: 0 0 18px;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.openLink {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-on-paper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text-on-paper);
+  padding-bottom: 1px;
+}

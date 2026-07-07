@@ -1,0 +1,16 @@
+# Claude
+CLAUDE.local.md
+.claude/memory/
+
+# Next.js
+.next/
+out/
+node_modules/
+next-env.d.ts
+*.tsbuildinfo
+
+# Env
+.env*.local
+
+# Misc
+.DS_Store

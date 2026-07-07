@@ -1,0 +1,13 @@
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--rust-deep);
+  border: 1.5px solid var(--rust-deep);
+  padding: 3px 8px;
+  border-radius: 2px;
+  transform: rotate(-3deg);
+  text-transform: uppercase;
+  opacity: 0.85;
+  display: inline-block;
+}

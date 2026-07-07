@@ -1,0 +1,66 @@
+.stepper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 28px;
+  background: var(--stepper-bg);
+  padding: 20px 48px;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.stageGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 160px;
+}
+
+.stageLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-on-paper);
+}
+
+.sectionList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionItem {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  width: fit-content;
+}
+
+.sectionItem.current {
+  color: var(--rust);
+  border-bottom-color: var(--rust);
+}
+
+.sectionItem.done {
+  color: var(--pine-deep);
+}
+
+.sectionItem.upcoming {
+  color: var(--text-on-paper);
+}
+
+.sectionItem:hover {
+  border-bottom-color: currentColor;
+}
+
+@media (max-width: 720px) {
+  .stepper {
+    padding: 16px 22px;
+    gap: 20px;
+  }
+}

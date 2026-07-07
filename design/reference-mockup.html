@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Skills — Claude Research Field Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Nunito+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #042A2B;
+            --ink-soft: #0A3A3B;
+            --paper: #CDEDF6;
+            --paper-line: #A9D3DE;
+            --paper-line-strong: #7FB8C8;
+            --text-on-paper: #042A2B;
+            --text-on-paper-muted: #3E6B70;
+            --text-on-ink: #E6F5F8;
+            --text-on-ink-muted: #7FAFB5;
+            --rust: #EF7B45;
+            --rust-deep: #D84727;
+            --pine: #5EB1BF;
+            --pine-deep: #2E7885;
+            --slate: #D84727;
+            --slate-deep: #A2331A;
+            --font-display: 'Source Serif 4', serif;
+            --font-body: 'Nunito Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            font-family: var(--font-body);
+            color: var(--text-on-paper);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ---------- header ---------- */
+        header {
+            background: var(--ink);
+            color: var(--text-on-ink);
+            padding: 22px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(239, 234, 221, 0.12);
+        }
+
+        .wordmark {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wordmark .mark {
+            width: 22px;
+            height: 22px;
+            border: 1px solid var(--text-on-ink-muted);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 11px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            font-size: 14px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-on-ink-muted);
+            transition: color .15s ease;
+        }
+
+        nav a.current,
+        nav a:hover {
+            color: var(--text-on-ink);
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            background: var(--ink);
+            color: var(--text-on-ink);
+            padding: 64px 48px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            color: var(--text-on-ink-muted);
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            opacity: .5;
+        }
+
+        h1.hero-title {
+            font-family: var(--font-display);
+            font-size: 64px;
+            font-weight: 500;
+            margin: 0 0 18px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-sub {
+            max-width: 560px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-on-ink-muted);
+            margin: 0;
+        }
+
+        .drawer-lines {
+            position: absolute;
+            right: -40px;
+            top: 0;
+            bottom: 0;
+            width: 420px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* ---------- content ---------- */
+        main {
+            padding: 64px 48px 40px;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            max-width: 680px;
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--text-on-paper);
+            margin-bottom: 12px;
+        }
+
+        .intro strong {
+            font-weight: 600;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-on-paper-muted);
+            margin: 56px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--paper-line-strong);
+        }
+
+        /* ---------- catalog grid ---------- */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #F2FAFC;
+            border: 1px solid var(--paper-line);
+            border-radius: 3px;
+            position: relative;
+            padding: 22px 20px 20px;
+            transition: border-color .15s ease, transform .15s ease;
+        }
+
+        .card:hover {
+            border-color: var(--paper-line-strong);
+            transform: translateY(-2px);
+        }
+
+        .card .tab {
+            position: absolute;
+            top: -1px;
+            left: 20px;
+            width: 46px;
+            height: 6px;
+            border-radius: 0 0 2px 2px;
+        }
+
+        .tab.rust {
+            background: var(--rust);
+        }
+
+        .tab.pine {
+            background: var(--pine);
+        }
+
+        .tab.slate {
+            background: var(--slate);
+        }
+
+        .call-number {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-on-paper-muted);
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 21px;
+            font-weight: 500;
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--text-on-paper-muted);
+            margin: 0 0 18px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stamp {
+            font-family: var(--font-mono);
+            font-size: 10.5px;
+            letter-spacing: 0.08em;
+            color: var(--rust-deep);
+            border: 1.5px solid var(--rust-deep);
+            padding: 3px 8px;
+            border-radius: 2px;
+            transform: rotate(-3deg);
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .open-link {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-on-paper);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text-on-paper);
+            padding-bottom: 1px;
+        }
+
+        /* ---------- expanded template panel ---------- */
+        .panel {
+            margin-top: 40px;
+            background: var(--ink-soft);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            border-bottom: 1px solid rgba(239, 234, 221, 0.1);
+        }
+
+        .panel-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-header .tab-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--rust);
+        }
+
+        .panel-title {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-on-ink);
+        }
+
+        .panel-title .muted {
+            color: var(--text-on-ink-muted);
+        }
+
+        .copy-btn {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-on-ink-muted);
+            background: transparent;
+            border: 1px solid rgba(239, 234, 221, 0.25);
+            border-radius: 3px;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: color .15s ease, border-color .15s ease;
+        }
+
+        .copy-btn:hover {
+            color: var(--text-on-ink);
+            border-color: rgba(239, 234, 221, 0.5);
+        }
+
+        .copy-btn:focus-visible {
+            outline: 2px solid var(--rust);
+            outline-offset: 2px;
+        }
+
+        pre {
+            margin: 0;
+            padding: 24px 22px 28px;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-on-ink);
+        }
+
+        .cm-key {
+            color: #F0A87A;
+        }
+
+        .cm-str {
+            color: #8ECBD3;
+        }
+
+        .cm-comment {
+            color: var(--text-on-ink-muted);
+        }
+
+        .cm-heading {
+            color: #F0A87A;
+        }
+
+        /* ---------- footer teaser ---------- */
+        footer {
+            background: var(--ink);
+            color: var(--text-on-ink);
+            margin-top: 72px;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-on-ink-muted);
+            margin-bottom: 6px;
+        }
+
+        .footer-next {
+            font-family: var(--font-display);
+            font-size: 26px;
+        }
+
+        .footer-arrow {
+            font-family: var(--font-mono);
+            font-size: 22px;
+            color: var(--text-on-ink-muted);
+        }
+
+        @media (max-width: 720px) {
+
+            header,
+            .hero,
+            main,
+            footer {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+
+            h1.hero-title {
+                font-size: 42px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wordmark"><span class="mark">§</span> Claude Research Field Guide</div>
+        <nav>
+            <a href="#" class="current">Reference</a>
+            <a href="#">Worked examples</a>
+            <a href="#">Templates</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <svg class="drawer-lines" viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="0" y1="60" x2="420" y2="60" stroke="#E6F5F8" stroke-opacity="0.08" />
+            <line x1="0" y1="140" x2="420" y2="140" stroke="#E6F5F8" stroke-opacity="0.08" />
+            <line x1="0" y1="220" x2="420" y2="220" stroke="#E6F5F8" stroke-opacity="0.08" />
+            <line x1="0" y1="300" x2="420" y2="300" stroke="#E6F5F8" stroke-opacity="0.08" />
+            <line x1="0" y1="380" x2="420" y2="380" stroke="#E6F5F8" stroke-opacity="0.08" />
+        </svg>
+        <div class="breadcrumb">Reference <span>/</span> Building blocks <span>/</span> Skills</div>
+        <h1 class="hero-title">Skills</h1>
+        <p class="hero-sub">Small, reusable procedures Claude loads only when the task calls for them — kept out of
+            CLAUDE.md so the file that's reloaded on every message stays lean.</p>
+    </section>
+
+    <main>
+        <p class="intro"><strong>A skill is a folder, not a paragraph.</strong> Each one holds a <code>SKILL.md</code>
+            describing when it applies and what to do, plus any supporting templates or scripts. Claude reads the
+            description, decides whether it's relevant, and only then loads the body — this is why skills scale better
+            than piling every convention into a single memory file.</p>
+        <p class="intro">Personal skills live in <code>~/.claude/skills/</code>. Project skills live in
+            <code>.claude/skills/</code> and are committed to the repo, so a coauthor's Claude follows the same
+            conventions as yours.
+        </p>
+
+        <div class="section-label">Catalog — five skills for this research group</div>
+
+        <div class="catalog-grid">
+            <div class="card">
+                <div class="tab rust"></div>
+                <div class="call-number">SK.01 — CLN.204</div>
+                <h3>data-cleaning-conventions</h3>
+                <p>Missing-data codes, outlier flagging, and the merge-diagnostic checklist to run after every join.</p>
+                <div class="card-footer">
+                    <span class="stamp">Project skill</span>
+                    <a class="open-link" href="#template-1">View template ↓</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="tab pine"></div>
+                <div class="call-number">SK.02 — ECN.118</div>
+                <h3>econometrics-diagnostics</h3>
+                <p>Which diagnostics to compute after any estimation, and how to report them alongside the results
+                    table.</p>
+                <div class="card-footer">
+                    <span class="stamp">Project skill</span>
+                    <a class="open-link" href="#">View template ↓</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="tab slate"></div>
+                <div class="call-number">SK.03 — REP.033</div>
+                <h3>replication-audit</h3>
+                <p>Re-derive a table from raw data end to end and produce a discrepancy report if a number doesn't
+                    match.</p>
+                <div class="card-footer">
+                    <span class="stamp">Project skill</span>
+                    <a class="open-link" href="#">View template ↓</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="tab rust"></div>
+                <div class="call-number">SK.04 — CIT.077</div>
+                <h3>citation-formatting</h3>
+                <p>House citation style, plus the standing rule to flag rather than fabricate an uncertain reference.
+                </p>
+                <div class="card-footer">
+                    <span class="stamp">Personal skill</span>
+                    <a class="open-link" href="#">View template ↓</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="tab pine"></div>
+                <div class="call-number">SK.05 — LIT.052</div>
+                <h3>lit-review-synthesis</h3>
+                <p>A standard per-paper summary format — question, strategy, effect size, relation to your contribution.
+                </p>
+                <div class="card-footer">
+                    <span class="stamp">Personal skill</span>
+                    <a class="open-link" href="#">View template ↓</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-label">Template — copy into .claude/skills/data-cleaning-conventions/SKILL.md</div>
+
+        <div class="panel" id="template-1">
+            <div class="panel-header">
+                <div class="panel-header-left">
+                    <span class="tab-dot"></span>
+                    <span class="panel-title">SK.01 <span class="muted">·</span>
+                        data-cleaning-conventions/SKILL.md</span>
+                </div>
+                <button class="copy-btn" id="copyBtn">Copy</button>
+            </div>
+            <pre id="codeBlock"><span class="cm-comment">---</span>
+<span class="cm-key">name:</span> <span class="cm-str">data-cleaning-conventions</span>
+<span class="cm-key">description:</span> <span class="cm-str">Use whenever cleaning, merging, or filtering a raw
+  dataset for this research group. Covers missing-data handling,
+  outlier flags, and merge diagnostics.</span>
+<span class="cm-comment">---</span>
+
+<span class="cm-heading"># Missing data</span>
+Check for -99, "N/A", and blank cells before any merge or filter.
+Never silently drop rows — always report a before/after count.
+
+<span class="cm-heading"># Outliers</span>
+Winsorize at the 1st/99th percentile by default. Report both the
+raw and winsorized results side by side, not winsorized alone.
+
+<span class="cm-heading"># After every merge</span>
+- Row count before and after
+- Uniqueness check on the join key
+- A short report of unmatched keys, not just a dropped-silently count</pre>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <div class="footer-label">Next in reference</div>
+            <div class="footer-next">Subagents</div>
+        </div>
+        <div class="footer-arrow">→</div>
+    </footer>
+
+    <script>
+        document.getElementById('copyBtn').addEventListener('click', function () {
+            var text = document.getElementById('codeBlock').innerText;
+            var btn = this;
+            navigator.clipboard.writeText(text).then(function () {
+                btn.textContent = 'Copied';
+                setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+            }).catch(function () {
+                btn.textContent = 'Press ⌘/Ctrl+C';
+                setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

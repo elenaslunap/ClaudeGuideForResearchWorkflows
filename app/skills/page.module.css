@@ -1,0 +1,41 @@
+.main {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 48px;
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-on-paper);
+  margin-bottom: 12px;
+}
+
+.intro strong {
+  font-weight: 600;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-on-paper-muted);
+  margin: 56px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sectionLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--paper-line-strong);
+}
+
+.catalogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}

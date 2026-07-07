@@ -1,0 +1,58 @@
+@import "./tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--text-on-paper);
+  font-family: var(--font-body);
+}
+
+a {
+  color: inherit;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+}
+
+th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-on-paper-muted);
+  text-align: left;
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--paper-line-strong);
+}
+
+td {
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid var(--paper-line);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--paper-line-strong);
+  font-style: italic;
+  color: var(--text-on-paper-muted);
+}
+
+blockquote p {
+  margin: 0;
+}

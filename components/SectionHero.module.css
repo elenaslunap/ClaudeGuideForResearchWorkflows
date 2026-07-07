@@ -1,0 +1,58 @@
+.hero {
+  background: var(--ink);
+  color: var(--text-on-ink);
+  padding: 64px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-on-ink-muted);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.separator {
+  margin: 0 8px;
+  opacity: 0.5;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 500;
+  margin: 0 0 18px;
+  letter-spacing: -0.01em;
+}
+
+.heroSub {
+  max-width: 560px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-on-ink-muted);
+  margin: 0;
+}
+
+.drawerLines {
+  position: absolute;
+  right: -40px;
+  top: 0;
+  bottom: 0;
+  width: 420px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .heroTitle {
+    font-size: 42px;
+  }
+}
