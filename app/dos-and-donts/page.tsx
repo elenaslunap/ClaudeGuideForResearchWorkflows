@@ -148,13 +148,6 @@ export default function DosAndDontsPage() {
       />
       <RoadmapStepper currentSlug="dos-and-donts" />
       <main className={contentStyles.main}>
-        <p className={contentStyles.intro}>
-          This page should read fast — a scannable checklist, not more prose
-          — and works as the natural &quot;before you go further, here&apos;s
-          the short version&quot; checkpoint at the end of the reference
-          stages.
-        </p>
-
         <div className={styles.checklistGrid}>
           {groups.map((group) => (
             <div key={group.title} className={styles.checklistGroup}>
